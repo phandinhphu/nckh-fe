@@ -1,0 +1,300 @@
+import type {
+    StudentInfo,
+    Course,
+    Semester,
+    CourseCategory,
+    SemesterGrade,
+    Achievement,
+    Milestone,
+    Alert,
+} from '@/types/student';
+
+export const mockStudentInfo: StudentInfo = {
+    name: 'Nguyễn Văn An',
+    studentId: '20210001',
+    major: 'Khoa học Máy tính',
+    year: 'Năm 3',
+    gpa: 3.45,
+    completedCredits: 85,
+    totalCredits: 140,
+    expectedGraduation: 'Tháng 6, 2025',
+};
+
+export const mockUpcomingCourses: Course[] = [
+    {
+        id: '1',
+        code: 'CS301',
+        name: 'Cấu trúc dữ liệu và giải thuật',
+        credits: 3,
+        semester: 'HK1 2024',
+        status: 'available',
+        prerequisites: [],
+        instructor: '',
+        schedule: '',
+        location: '',
+        enrolled: 0,
+        capacity: 0,
+    },
+    {
+        id: '2',
+        code: 'CS302',
+        name: 'Hệ quản trị cơ sở dữ liệu',
+        credits: 3,
+        semester: 'HK1 2024',
+        status: 'available',
+        prerequisites: [],
+        instructor: '',
+        schedule: '',
+        location: '',
+        enrolled: 0,
+        capacity: 0,
+    },
+    {
+        id: '3',
+        code: 'CS303',
+        name: 'Mạng máy tính',
+        credits: 3,
+        semester: 'HK1 2024',
+        status: 'available',
+        prerequisites: [],
+        instructor: '',
+        schedule: '',
+        location: '',
+        enrolled: 0,
+        capacity: 0,
+    },
+];
+
+export const mockAlerts: Alert[] = [
+    { type: 'warning', message: 'Môn CS201 là tiên quyết cho CS301. Hãy đảm bảo hoàn thành trước khi đăng ký.' },
+    { type: 'info', message: 'Đăng ký môn học cho HK2 2024 sẽ mở vào ngày 15/11/2024.' },
+    { type: 'success', message: 'Bạn đã hoàn thành 60% chương trình đào tạo!' },
+];
+
+export const mockAvailableCourses: Course[] = [
+    {
+        id: 'cs301',
+        code: 'CS301',
+        name: 'Cấu trúc dữ liệu và giải thuật',
+        credits: 3,
+        prerequisites: ['CS201', 'MATH201'],
+        semester: 'HK1 2024',
+        instructor: 'TS. Nguyễn Văn A',
+        schedule: 'T2, T4: 7:30-9:30',
+        location: 'Phòng 301-A1',
+        enrolled: 45,
+        capacity: 50,
+        status: 'available',
+    },
+    {
+        id: 'cs302',
+        code: 'CS302',
+        name: 'Hệ quản trị cơ sở dữ liệu',
+        credits: 3,
+        prerequisites: ['CS201'],
+        semester: 'HK1 2024',
+        instructor: 'PGS. Trần Thị B',
+        schedule: 'T3, T5: 9:30-11:30',
+        location: 'Phòng 302-A1',
+        enrolled: 50,
+        capacity: 50,
+        status: 'full',
+    },
+    {
+        id: 'cs303',
+        code: 'CS303',
+        name: 'Mạng máy tính',
+        credits: 3,
+        prerequisites: ['CS202'],
+        semester: 'HK1 2024',
+        instructor: 'TS. Lê Văn C',
+        schedule: 'T2, T4: 13:30-15:30',
+        location: 'Phòng 303-A1',
+        enrolled: 30,
+        capacity: 45,
+        status: 'prerequisite-missing',
+    },
+    {
+        id: 'math301',
+        code: 'MATH301',
+        name: 'Xác suất thống kê',
+        credits: 3,
+        prerequisites: ['MATH201'],
+        semester: 'HK1 2024',
+        instructor: 'TS. Phạm Thị D',
+        schedule: 'T3, T6: 7:30-9:30',
+        location: 'Phòng 201-B1',
+        enrolled: 35,
+        capacity: 40,
+        status: 'available',
+    },
+];
+
+export const mockSemesters: Semester[] = [
+    {
+        id: 'hk1-2024',
+        name: 'Học kỳ 1, 2024',
+        courses: [],
+        maxCredits: 24,
+    },
+    {
+        id: 'hk2-2024',
+        name: 'Học kỳ 2, 2024',
+        courses: [],
+        maxCredits: 24,
+    },
+    {
+        id: 'hk1-2025',
+        name: 'Học kỳ 1, 2025',
+        courses: [],
+        maxCredits: 24,
+    },
+];
+
+export const mockCourseCategories: CourseCategory[] = [
+    {
+        name: 'Kiến thức cơ sở',
+        completed: 24,
+        required: 30,
+        color: 'bg-blue-500',
+    },
+    {
+        name: 'Kiến thức chuyên ngành',
+        completed: 36,
+        required: 60,
+        color: 'bg-primary',
+    },
+    {
+        name: 'Thực tập & Đồ án',
+        completed: 6,
+        required: 15,
+        color: 'bg-orange-500',
+    },
+    {
+        name: 'Tự chọn',
+        completed: 19,
+        required: 35,
+        color: 'bg-purple-500',
+    },
+];
+
+export const mockSemesterGrades: SemesterGrade[] = [
+    { semester: 'HK1 2022', gpa: 3.2, credits: 18 },
+    { semester: 'HK2 2022', gpa: 3.4, credits: 20 },
+    { semester: 'HK1 2023', gpa: 3.3, credits: 19 },
+    { semester: 'HK2 2023', gpa: 3.6, credits: 21 },
+    { semester: 'HK1 2024', gpa: 3.5, credits: 7 },
+];
+
+export const mockAchievements: Achievement[] = [
+    { title: 'Học bổng khuyến khích học tập', semester: 'HK2 2023', type: 'scholarship' },
+    { title: 'Hoàn thành sớm khối kiến thức cơ sở', semester: 'HK1 2023', type: 'achievement' },
+    { title: 'GPA trên 3.5 liên tiếp 2 học kỳ', semester: 'HK2 2023', type: 'academic' },
+];
+
+export const mockUpcomingMilestones: Milestone[] = [
+    { title: 'Hoàn thành 100 tín chỉ', progress: 85, target: 100, deadline: 'HK2 2024' },
+    { title: 'Bắt đầu thực tập', progress: 0, target: 1, deadline: 'HK1 2025' },
+    { title: 'Đăng ký đồ án tốt nghiệp', progress: 0, target: 1, deadline: 'HK2 2025' },
+];
+
+export const mockNextSemesterRecommendations: Course[] = [
+    {
+        id: 'cs401',
+        code: 'CS401',
+        name: 'Trí tuệ nhân tạo',
+        credits: 3,
+        instructor: 'PGS. Nguyễn Văn AI',
+        rating: 4.5,
+        difficulty: 'Khó',
+        workload: 'Nặng',
+        prerequisites: ['CS301', 'MATH301'],
+        description: 'Khóa học cung cấp kiến thức cơ bản về AI, machine learning và các ứng dụng thực tế.',
+        reasons: [
+            'Phù hợp với xu hướng công nghệ hiện tại',
+            'Bạn đã hoàn thành các môn tiên quyết',
+            'Giảng viên có kinh nghiệm và đánh giá cao',
+        ],
+        semester: 'HK2 2024',
+        priority: 'Cao',
+        schedule: '',
+        location: '',
+        enrolled: 0,
+        capacity: 0,
+        status: 'available',
+    },
+    {
+        id: 'cs402',
+        code: 'CS402',
+        name: 'Phát triển ứng dụng Web',
+        credits: 3,
+        instructor: 'TS. Trần Thị Web',
+        rating: 4.2,
+        difficulty: 'Trung bình',
+        workload: 'Trung bình',
+        prerequisites: ['CS302'],
+        description: 'Học cách xây dựng ứng dụng web hiện đại với các framework phổ biến.',
+        reasons: [
+            'Kỹ năng thực tế cao, dễ tìm việc',
+            'Có nhiều project thực hành',
+            'Kết nối tốt với thị trường lao động',
+        ],
+        semester: 'HK2 2024',
+        priority: 'Cao',
+        schedule: '',
+        location: '',
+        enrolled: 0,
+        capacity: 0,
+        status: 'available',
+    },
+];
+
+export const mockCareerPathRecommendations: Course[] = [
+    {
+        id: 'cs501',
+        code: 'CS501',
+        name: 'Machine Learning nâng cao',
+        credits: 3,
+        instructor: 'PGS. Phạm Thị ML',
+        rating: 4.7,
+        difficulty: 'Khó',
+        workload: 'Nặng',
+        prerequisites: ['CS401', 'MATH401'],
+        description: 'Khóa học chuyên sâu về machine learning và deep learning.',
+        reasons: [
+            'Phù hợp với định hướng AI/ML',
+            'Chuẩn bị cho nghiên cứu sau đại học',
+            'Kỹ năng được săn đón nhất hiện tại',
+        ],
+        semester: 'HK1 2025',
+        priority: 'Cao',
+        schedule: '',
+        location: '',
+        enrolled: 0,
+        capacity: 0,
+        status: 'available',
+    },
+];
+
+export const mockElectiveRecommendations: Course[] = [
+    {
+        id: 'bus301',
+        code: 'BUS301',
+        name: 'Khởi nghiệp công nghệ',
+        credits: 2,
+        instructor: 'ThS. Nguyễn Startup',
+        rating: 4.1,
+        difficulty: 'Dễ',
+        workload: 'Nhẹ',
+        prerequisites: [],
+        description: 'Tìm hiểu về khởi nghiệp, lập kế hoạch kinh doanh và quản lý startup.',
+        reasons: ['Kỹ năng mềm quan trọng', 'Mở rộng tư duy kinh doanh', 'Networking với cộng đồng startup'],
+        semester: 'HK2 2024',
+        priority: 'Thấp',
+        schedule: '',
+        location: '',
+        enrolled: 0,
+        capacity: 0,
+        status: 'available',
+    },
+];
