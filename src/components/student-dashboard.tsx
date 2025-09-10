@@ -1,54 +1,21 @@
-'use client';
-
 import { useState } from 'react';
-import { BookOpen, Calendar, CheckCircle, GraduationCap, Target, TrendingUp, AlertCircle, Badge } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { BookOpen, Calendar, CheckCircle, GraduationCap, Target, TrendingUp } from 'lucide-react';
 import { CourseScheduler } from './course-scheduler';
 import { ProgressTracker } from './progress-trackers';
 import { CourseRecommendations } from './course-recommendations';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Progress } from '@radix-ui/react-progress';
+import { AlertCard } from '@/components/ui/alert-card';
+import { mockStudentInfo, mockUpcomingCourses, mockAlerts } from '@/data/mock-data';
 
 export function StudentDashboard() {
     const [activeTab, setActiveTab] = useState('overview');
 
-    // Mock data for demonstration
-    const studentInfo = {
-        name: 'Nguyễn Văn An',
-        studentId: '20210001',
-        major: 'Khoa học Máy tính',
-        year: 'Năm 3',
-        gpa: 3.45,
-        completedCredits: 85,
-        totalCredits: 140,
-        expectedGraduation: 'Tháng 6, 2025',
-    };
-
-    const upcomingCourses = [
-        {
-            id: 1,
-            code: 'CS301',
-            name: 'Cấu trúc dữ liệu và giải thuật',
-            credits: 3,
-            semester: 'HK1 2024',
-            status: 'registered',
-        },
-        {
-            id: 2,
-            code: 'CS302',
-            name: 'Hệ quản trị cơ sở dữ liệu',
-            credits: 3,
-            semester: 'HK1 2024',
-            status: 'registered',
-        },
-        { id: 3, code: 'CS303', name: 'Mạng máy tính', credits: 3, semester: 'HK1 2024', status: 'waitlist' },
-    ];
-
-    const alerts = [
-        { type: 'warning', message: 'Môn CS201 là tiên quyết cho CS301. Hãy đảm bảo hoàn thành trước khi đăng ký.' },
-        { type: 'info', message: 'Đăng ký môn học cho HK2 2024 sẽ mở vào ngày 15/11/2024.' },
-        { type: 'success', message: 'Bạn đã hoàn thành 60% chương trình đào tạo!' },
-    ];
+    const studentInfo = mockStudentInfo;
+    const upcomingCourses = mockUpcomingCourses;
+    const alerts = mockAlerts;
 
     return (
         <div className="min-h-screen bg-background">
@@ -60,7 +27,7 @@ export function StudentDashboard() {
                             <GraduationCap className="h-8 w-8 text-primary" />
                             <div>
                                 <h1 className="text-xl font-bold text-foreground">Hệ thống Lập kế hoạch học tập</h1>
-                                <p className="text-sm text-muted-foreground">Trường Đại học ABC</p>
+                                <p className="text-sm text-muted-foreground">Trường Đại học Quy Nhơn</p>
                             </div>
                         </div>
                         <div className="flex items-center space-x-4">
@@ -103,19 +70,7 @@ export function StudentDashboard() {
                         {/* Alerts Section */}
                         <div className="space-y-3">
                             {alerts.map((alert, index) => (
-                                <div
-                                    key={index}
-                                    className={`flex items-start gap-3 p-4 rounded-lg border ${
-                                        alert.type === 'warning'
-                                            ? 'bg-orange-50 border-orange-200 text-orange-800'
-                                            : alert.type === 'success'
-                                              ? 'bg-green-50 border-green-200 text-green-800'
-                                              : 'bg-blue-50 border-blue-200 text-blue-800'
-                                    }`}
-                                >
-                                    <AlertCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                                    <p className="text-sm">{alert.message}</p>
-                                </div>
+                                <AlertCard key={index} alert={alert} index={index} />
                             ))}
                         </div>
 
@@ -190,7 +145,7 @@ export function StudentDashboard() {
                                         >
                                             <div className="flex-1">
                                                 <div className="flex items-center gap-3">
-                                                    <Badge>{course.code}</Badge>
+                                                    <Badge variant="outline">{course.code}</Badge>
                                                     <h3 className="font-medium text-foreground">{course.name}</h3>
                                                 </div>
                                                 <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
@@ -198,8 +153,11 @@ export function StudentDashboard() {
                                                     <span>{course.semester}</span>
                                                 </div>
                                             </div>
-                                            <Badge className={course.status === 'registered' ? 'bg-primary' : ''}>
-                                                {course.status === 'registered' ? 'Đã đăng ký' : 'Chờ xử lý'}
+                                            <Badge
+                                                variant={course.status === 'available' ? 'default' : 'secondary'}
+                                                className={course.status === 'available' ? 'bg-primary' : ''}
+                                            >
+                                                {course.status === 'available' ? 'Đã đăng ký' : 'Chờ xử lý'}
                                             </Badge>
                                         </div>
                                     ))}
