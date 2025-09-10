@@ -13,6 +13,7 @@ import { mockStudentInfo, mockUpcomingCourses, mockAlerts } from '@/data/mock-da
 export function StudentDashboard() {
     const [activeTab, setActiveTab] = useState('overview');
 
+
     const studentInfo = mockStudentInfo;
     const upcomingCourses = mockUpcomingCourses;
     const alerts = mockAlerts;
